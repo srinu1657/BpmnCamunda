@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_101qi04" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.8.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="sequance_flows_id" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0i18v46</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0i18v46" sourceRef="StartEvent_1" targetRef="Activity_1imxuyq" />
+    <bpmn:scriptTask id="Activity_1imxuyq" name="Task1" scriptFormat="groovy">
+      <bpmn:incoming>Flow_0i18v46</bpmn:incoming>
+      <bpmn:outgoing>Flow_01pvtrw</bpmn:outgoing>
+      <bpmn:outgoing>Flow_154rz15</bpmn:outgoing>
+      <bpmn:script>println("1st tasks");</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_01pvtrw" sourceRef="Activity_1imxuyq" targetRef="Activity_1m4s73m" />
+    <bpmn:scriptTask id="Activity_1m4s73m" name="Task2" scriptFormat="groovy">
+      <bpmn:incoming>Flow_01pvtrw</bpmn:incoming>
+      <bpmn:outgoing>Flow_1gegk01</bpmn:outgoing>
+      <bpmn:script>println("Task2..");</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_154rz15" sourceRef="Activity_1imxuyq" targetRef="Activity_1rmkqht" />
+    <bpmn:endEvent id="Event_1rofj2f">
+      <bpmn:incoming>Flow_1gegk01</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1gegk01" sourceRef="Activity_1m4s73m" targetRef="Event_1rofj2f" />
+    <bpmn:scriptTask id="Activity_1rmkqht" name="Task3" scriptFormat="groovy" camunda:resultVariable="numberOfCoins">
+      <bpmn:incoming>Flow_154rz15</bpmn:incoming>
+      <bpmn:outgoing>Flow_1pgi5dj</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1ss4qmh</bpmn:outgoing>
+      <bpmn:script>println("task3...");
+def num=5;
+num;</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_1pgi5dj" sourceRef="Activity_1rmkqht" targetRef="Activity_0ekw7ec">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="groovy">def result=false;
+
+if(numberOfCoins==4){
+result=true;
+}
+result;</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1ss4qmh" sourceRef="Activity_1rmkqht" targetRef="Activity_102sjjn">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="groovy">def result=false;
+
+if(numberOfCoins==5){
+result=true;
+}
+result;</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:scriptTask id="Activity_0ekw7ec" name="Task4" scriptFormat="groovy">
+      <bpmn:incoming>Flow_1pgi5dj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0076s4d</bpmn:outgoing>
+      <bpmn:script>println("number of tasks are 4");</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_102sjjn" name="Task5" scriptFormat="groovy">
+      <bpmn:incoming>Flow_1ss4qmh</bpmn:incoming>
+      <bpmn:outgoing>Flow_0kv3txb</bpmn:outgoing>
+      <bpmn:script>println("number of tasks are 5");
+
+def result=false;
+
+if(numberOfCoins==5){
+result=true;
+}
+result;</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="Event_165df2h">
+      <bpmn:incoming>Flow_0076s4d</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0076s4d" sourceRef="Activity_0ekw7ec" targetRef="Event_165df2h" />
+    <bpmn:endEvent id="Event_1hbj1b5">
+      <bpmn:incoming>Flow_0kv3txb</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0kv3txb" sourceRef="Activity_102sjjn" targetRef="Event_1hbj1b5" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="sequance_flows_id">
+      <bpmndi:BPMNEdge id="Flow_0i18v46_di" bpmnElement="Flow_0i18v46">
+        <di:waypoint x="188" y="120" />
+        <di:waypoint x="240" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01pvtrw_di" bpmnElement="Flow_01pvtrw">
+        <di:waypoint x="340" y="120" />
+        <di:waypoint x="400" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_154rz15_di" bpmnElement="Flow_154rz15">
+        <di:waypoint x="290" y="160" />
+        <di:waypoint x="290" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gegk01_di" bpmnElement="Flow_1gegk01">
+        <di:waypoint x="500" y="120" />
+        <di:waypoint x="562" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pgi5dj_di" bpmnElement="Flow_1pgi5dj">
+        <di:waypoint x="340" y="340" />
+        <di:waypoint x="500" y="340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ss4qmh_di" bpmnElement="Flow_1ss4qmh">
+        <di:waypoint x="300" y="380" />
+        <di:waypoint x="300" y="520" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0076s4d_di" bpmnElement="Flow_0076s4d">
+        <di:waypoint x="600" y="340" />
+        <di:waypoint x="762" y="340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0kv3txb_di" bpmnElement="Flow_0kv3txb">
+        <di:waypoint x="350" y="560" />
+        <di:waypoint x="402" y="560" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0w4r4o1_di" bpmnElement="Activity_1imxuyq">
+        <dc:Bounds x="240" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_028enzd_di" bpmnElement="Activity_1m4s73m">
+        <dc:Bounds x="400" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1rofj2f_di" bpmnElement="Event_1rofj2f">
+        <dc:Bounds x="562" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1mn1j1h_di" bpmnElement="Activity_1rmkqht">
+        <dc:Bounds x="240" y="300" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00dmt3h_di" bpmnElement="Activity_0ekw7ec">
+        <dc:Bounds x="500" y="300" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00w8g90_di" bpmnElement="Activity_102sjjn">
+        <dc:Bounds x="250" y="520" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_165df2h_di" bpmnElement="Event_165df2h">
+        <dc:Bounds x="762" y="322" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1hbj1b5_di" bpmnElement="Event_1hbj1b5">
+        <dc:Bounds x="402" y="542" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

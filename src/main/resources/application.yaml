@@ -1,0 +1,13 @@
+spring.datasource.url: jdbc:h2:file:./camunda-h2-database
+
+camunda.bpm.admin-user:
+  id: admin
+  password: admin
+
+camunda:
+  bpm:
+    history-level: full
+    generic-properties:
+      properties:
+        enforceHistoryTimeToLive: false
+        historyTimeToLive: 1
